@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { API_URL } from "../constants";
 
 interface ApiResponse {
   message: string;
@@ -20,7 +21,7 @@ const FetchButton: React.FC<{ accessToken: string }> = ({ accessToken }) => {
   } | null>(null);
 
   async function checkZoomAuthorize() {
-    const res = await fetch("http://localhost:4000/zoom/request", {
+    const res = await fetch(`${API_URL}/zoom/request`, {
       headers: {
         Authorization: "Bearer " + accessToken,
       },
@@ -46,7 +47,7 @@ const FetchButton: React.FC<{ accessToken: string }> = ({ accessToken }) => {
 
   const handleClick = async () => {
     try {
-      const res = await fetch("http://localhost:4000/zoom/request", {
+      const res = await fetch(`${API_URL}/zoom/request`, {
         headers: {
           Authorization: "Bearer " + accessToken,
         },

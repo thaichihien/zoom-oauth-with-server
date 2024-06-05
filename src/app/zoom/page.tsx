@@ -2,9 +2,9 @@
 
 import { useParams, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { API_URL } from "../constants";
 
-const accessToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwidXNlcm5hbWUiOiJjaGloaWVuQGdtYWlsLmNvbSIsInJvbGUiOiJST09UX0FETUlOIiwiY29tcGFueV9pZCI6IjEiLCJ0eXBlIjoiQUNDT1VOVCIsImlhdCI6MTcxNzMzNTE5NiwiZXhwIjoxNzE3MzM4Nzk2fQ.DEB2Qaa8metEuwWFelWsXQCNTX2Ujxo2tcDyIloA5L0";
+
 
 const ZoomCodeSection = () => {
   const [code, setCode] = useState("");
@@ -15,7 +15,7 @@ const ZoomCodeSection = () => {
   async function saveZoomCode(code: string) {
     try {
       const accessToken =  localStorage.getItem('access_token') // Please use refresh token to get new access token 
-      const res = await fetch("http://localhost:4000/zoom/authorize", {
+      const res = await fetch(`${API_URL}/zoom/authorize`, {
         method: "POST",
         headers: {
           Authorization: "Bearer " + accessToken,
